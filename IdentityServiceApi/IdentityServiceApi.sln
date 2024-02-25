@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{A21F3D2D-27E5-4CCD-A69B-31DA2267AA41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C03234B9-200D-4C78-9938-9706DA7A70FD}"
+	ProjectSection(SolutionItems) = preProject
+		ApiRequests.http = ApiRequests.http
+		http-client.env.json = http-client.env.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A21F3D2D-27E5-4CCD-A69B-31DA2267AA41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A21F3D2D-27E5-4CCD-A69B-31DA2267AA41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A21F3D2D-27E5-4CCD-A69B-31DA2267AA41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A21F3D2D-27E5-4CCD-A69B-31DA2267AA41}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {67F740BD-8152-49F2-9528-F2554313D14E}
+	EndGlobalSection
+EndGlobal
