@@ -6,10 +6,12 @@ namespace Dal.Repositories
     public class UserRepository : IRepository<User>
     {
         private readonly IdentityServiceContext context;
+
         public UserRepository(IdentityServiceContext context) 
         { 
             this.context = context;
         }
+
         public async Task<bool> Create(User user)
         {
             var addedUser = await context.Users.AddAsync(user);
@@ -23,6 +25,7 @@ namespace Dal.Repositories
             var user = await context.Users.FindAsync(id);
             if (user == null)
                 return false;
+
             var removedUser = context.Users.Remove(user);
             await context.SaveChangesAsync();
 
