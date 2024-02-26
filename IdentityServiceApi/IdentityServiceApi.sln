@@ -5,11 +5,13 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "Api\Api.csproj", "{A21F3D2D-27E5-4CCD-A69B-31DA2267AA41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dal", "Dal\Dal.csproj", "{C375D677-2E51-4EE4-AA2E-5EA5EF9A3E16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dal", "Dal\Dal.csproj", "{C375D677-2E51-4EE4-AA2E-5EA5EF9A3E16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{195748AF-A763-45EB-A6C1-659403C907FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "Logic\Logic.csproj", "{195748AF-A763-45EB-A6C1-659403C907FD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{1811A328-9A46-42A7-A085-B803894EBD18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{1811A328-9A46-42A7-A085-B803894EBD18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{B5268E08-2B7B-477F-BAEE-A6D3828FD327}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1811A328-9A46-42A7-A085-B803894EBD18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1811A328-9A46-42A7-A085-B803894EBD18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1811A328-9A46-42A7-A085-B803894EBD18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5268E08-2B7B-477F-BAEE-A6D3828FD327}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5268E08-2B7B-477F-BAEE-A6D3828FD327}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5268E08-2B7B-477F-BAEE-A6D3828FD327}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5268E08-2B7B-477F-BAEE-A6D3828FD327}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

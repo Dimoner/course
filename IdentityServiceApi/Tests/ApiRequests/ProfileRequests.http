@@ -1,0 +1,10 @@
+### Get user profile
+
+@userId=""
+Get {{HostAddress}}/api/users/{{userId}}/profile
+Accept: application/json
+
+### Update user profile info
+
+Put {{HostAddress}}/api/users/{{userId}}/profile
+Accept: application/json

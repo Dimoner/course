@@ -1,0 +1,9 @@
+### Get active users sessions
+
+Get {{HostAddress}}/api/sessions
+Accept: application/json
+
+### Stop user session
+
+Delete {{HostAddress}}/api/sessions
+Accept: application/json

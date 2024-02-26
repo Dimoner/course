@@ -1,7 +1,0 @@
-GET {{HostAddress}}/api/users
-Accept: application/json
-
-###
-
-POST {{HostAddress}}/api/users
-Accept: application/json

@@ -1,0 +1,17 @@
+### Get user friend requests
+
+@userId=""
+Get {{HostAddress}}/api/users/{{userId}}/friend-requests
+Accept: application/json
+
+### Accept user friend request
+
+@requestId=""
+Post {{HostAddress}}/api/users/{{userId}}/friend-requests/{{requestId}}
+Accept: application/json
+
+### Deny user friend request
+
+@requestId=""
+Delete {{HostAddress}}/api/users/{{userId}}/friend-requests/{{requestId}}
+Accept: application/json

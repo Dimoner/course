@@ -1,0 +1,25 @@
+### Get all users
+
+GET {{HostAddress}}/api/users
+Accept: application/json
+
+### Add new user
+
+POST {{HostAddress}}/api/users
+Accept: application/json
+
+### Get user
+
+@userId=""
+Get {{HostAddress}}/api/users/{{userId}}
+Accept: application/json
+
+### Update user info
+
+Put {{HostAddress}}/api/users/{{userId}}
+Accept: application/json
+
+### Delete user
+
+Delete {{HostAddress}}/api/users/{{userId}}
+Accept: application/json

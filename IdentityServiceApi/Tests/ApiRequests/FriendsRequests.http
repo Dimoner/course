@@ -1,0 +1,16 @@
+### Get user friends
+
+@userId=""
+GET {{HostAddress}}/api/users/{{userId}}/friends
+Accept: application/json
+
+### Send friend request to user
+
+Post {{HostAddress}}/api/users/{{userId}}/friends
+Accept: application/json
+
+### Delete friend of user
+
+@friendId = ""
+Delete {{HostAddress}}/api/users/{{userId}}/friends/{{friendId}}
+Accept: application/json

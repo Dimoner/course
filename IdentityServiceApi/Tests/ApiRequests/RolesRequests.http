@@ -1,0 +1,10 @@
+### Get every role
+
+Get {{HostAddress}}/api/roles
+Accept: application/json
+
+### Get role info
+
+@roleId=""
+Get {{HostAddress}}/api/roles{{roleId}}
+Accept: application/json

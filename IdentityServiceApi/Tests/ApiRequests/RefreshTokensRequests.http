@@ -1,0 +1,4 @@
+### Create new Refresh Token
+
+Delete {{HostAddress}}/api/refresh-tokens
+Accept: application/json
