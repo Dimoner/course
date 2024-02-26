@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.Dal.Base;
 
 namespace Dal.Models
 {
-    internal class UserProfile
+    public record UserProfile: BaseEntity
     {
+        public string? Status { get; init; }
+        public DateTime? BirthDate { get; init; }
+        public string AvatarUrl { get; init; } = null!;
     }
 }
