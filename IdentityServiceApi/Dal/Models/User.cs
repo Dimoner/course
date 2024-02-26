@@ -10,5 +10,6 @@ namespace Dal.Models
         public int Age { get; init; }
         public DateTime RegistrationDate { get; init; }
         public string Password { get; init; } = null!;
+        public Guid ProfileId { get; init; }
     }
 }
