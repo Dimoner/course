@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Dal.Repositories
 {
-    public class UserRepository : IRepository<User>
+    public class UserRepository : IRepository<UserDal>
     {
         private readonly IdentityServiceContext context;
 
@@ -12,7 +12,7 @@ namespace Dal.Repositories
             this.context = context;
         }
 
-        public async Task<bool> Create(User user)
+        public async Task<bool> Create(UserDal user)
         {
             var addedUser = await context.Users.AddAsync(user);
             await context.SaveChangesAsync();
@@ -32,12 +32,12 @@ namespace Dal.Repositories
             return removedUser.State == EntityState.Deleted;
         }
 
-        public async Task<User?> Get(Guid id)
+        public async Task<UserDal?> Get(Guid id)
         {
             return await context.Users.FindAsync(id);
         }
 
-        public async Task<User> Update(User user)
+        public async Task<UserDal> Update(UserDal user)
         {
             var updatedUser = context.Users.Update(user);
             await context.SaveChangesAsync();

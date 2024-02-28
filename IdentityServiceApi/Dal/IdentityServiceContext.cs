@@ -5,8 +5,8 @@ namespace Dal
 {
     public class IdentityServiceContext: DbContext
     {
-        public DbSet<User> Users { get; set; }
-        public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<UserDal> Users { get; set; }
+        public DbSet<UserProfileDal> UserProfiles { get; set; }
         public IdentityServiceContext(DbContextOptions<IdentityServiceContext> options)
             : base(options)
         {
