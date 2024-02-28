@@ -20,9 +20,9 @@ namespace Dal.Repositories
             return addedFriendship.State == EntityState.Added;
         }
 
-        public async Task<bool> Delete(Guid id)
+        public async Task<bool> Delete(Guid userId)
         {
-            var friendship = await context.Friendships.FindAsync(id);
+            var friendship = await context.Friendships.FindAsync(userId);
             if (friendship == null)
                 return false;
 
@@ -32,9 +32,9 @@ namespace Dal.Repositories
             return removedFriendship.State == EntityState.Deleted;
         }
 
-        public async Task<FriendshipDal?> Get(Guid id)
+        public async Task<FriendshipDal?> Get(Guid userId)
         {
-            return await context.Friendships.FindAsync(id);
+            return await context.Friendships.FindAsync(userId);
         }
 
         public async Task<FriendshipDal> Update(FriendshipDal friendship)
