@@ -12,6 +12,7 @@ namespace Dal
         public DbSet<SessionDal> Sessions { get; set; }
         public DbSet<RightDal> Rights { get; set; }
         public DbSet<RefreshToken> RefreshTokens { get; set; }
+        public DbSet<FriendRequestDal> FriendRequests { get; set; }
         public IdentityServiceContext(DbContextOptions<IdentityServiceContext> options)
             : base(options)
         {
