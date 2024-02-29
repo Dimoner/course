@@ -1,6 +1,6 @@
 ﻿namespace Dal.Sessions
 {
-    internal interface ISessionRepository: IRepository<SessionDal>
+    public interface ISessionRepository: IRepository<SessionDal>
     {
     }
 }
