@@ -39,6 +39,7 @@ ALTER TABLE public."FriendRequest" OWNER TO postgres;
 --
 
 CREATE TABLE public."Friendship" (
+    "Id" uuid NOT NULL,
     "UserId1" uuid NOT NULL,
     "UserId2" uuid NOT NULL
 );
@@ -156,7 +157,7 @@ COPY public."FriendRequest" ("Id", "SenderUserId", "ReceiverUserId", "Status") F
 -- Data for Name: Friendship; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."Friendship" ("UserId1", "UserId2") FROM stdin;
+COPY public."Friendship" ("Id", "UserId1", "UserId2") FROM stdin;
 \.
 
 
@@ -217,6 +218,14 @@ COPY public."UserProfile" ("Id", "Status", "AvatarUrl", "RegistrationDate", "Use
 
 
 --
+-- Name: Friendship Friendship_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Friendship"
+    ADD CONSTRAINT "Friendship_pkey" PRIMARY KEY ("Id", "UserId1", "UserId2");
+
+
+--
 -- Name: RefreshToken RefreshToken_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -257,14 +266,6 @@ ALTER TABLE ONLY public."FriendRequest"
 
 
 --
--- Name: Friendship friendship_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public."Friendship"
-    ADD CONSTRAINT friendship_pkey PRIMARY KEY ("UserId1", "UserId2");
-
-
---
 -- Name: Session session_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -302,6 +303,22 @@ ALTER TABLE ONLY public."User"
 
 ALTER TABLE ONLY public."User"
     ADD CONSTRAINT users_pkey PRIMARY KEY ("Id");
+
+
+--
+-- Name: Friendship Friendship_UserId1_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Friendship"
+    ADD CONSTRAINT "Friendship_UserId1_fkey" FOREIGN KEY ("UserId1") REFERENCES public."User"("Id");
+
+
+--
+-- Name: Friendship Friendship_UserId2_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public."Friendship"
+    ADD CONSTRAINT "Friendship_UserId2_fkey" FOREIGN KEY ("UserId2") REFERENCES public."User"("Id");
 
 
 --
@@ -350,22 +367,6 @@ ALTER TABLE ONLY public."FriendRequest"
 
 ALTER TABLE ONLY public."FriendRequest"
     ADD CONSTRAINT "friendrequest_SenderUserId_fkey" FOREIGN KEY ("SenderUserId") REFERENCES public."User"("Id");
-
-
---
--- Name: Friendship friendship_user_id1_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public."Friendship"
-    ADD CONSTRAINT friendship_user_id1_fkey FOREIGN KEY ("UserId1") REFERENCES public."User"("Id");
-
-
---
--- Name: Friendship friendship_user_id2_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY public."Friendship"
-    ADD CONSTRAINT friendship_user_id2_fkey FOREIGN KEY ("UserId2") REFERENCES public."User"("Id");
 
 
 --
