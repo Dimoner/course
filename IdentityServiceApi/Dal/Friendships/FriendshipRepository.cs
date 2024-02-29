@@ -11,12 +11,12 @@ namespace Dal.Friendships
             this.context = context;
         }
 
-        public async Task<bool> CreateAsync(FriendshipDal friendship)
+        public async Task<Guid> CreateAsync(FriendshipDal friendship)
         {
             var addedFriendship = await context.Friendships.AddAsync(friendship);
             await context.SaveChangesAsync();
 
-            return addedFriendship.State == EntityState.Added;
+            return addedFriendship.Entity.UserId1;
         }
 
         public async Task<bool> DeleteAsync(Guid userId)

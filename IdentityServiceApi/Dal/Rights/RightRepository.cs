@@ -11,12 +11,12 @@ namespace Dal.Rights
             this.context = context;
         }
 
-        public async Task<bool> CreateAsync(RightDal right)
+        public async Task<Guid> CreateAsync(RightDal right)
         {
             var addedRight = await context.Rights.AddAsync(right);
             await context.SaveChangesAsync();
 
-            return addedRight.State == EntityState.Added;
+            return addedRight.Entity.Id;
         }
 
         public async Task<bool> DeleteAsync(Guid id)

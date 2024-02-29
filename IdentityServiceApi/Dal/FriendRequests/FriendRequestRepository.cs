@@ -11,12 +11,12 @@ namespace Dal.FriendRequests
             this.context = context;
         }
 
-        public async Task<bool> CreateAsync(FriendRequestDal request)
+        public async Task<Guid> CreateAsync(FriendRequestDal request)
         {
             var addedRequest = await context.FriendRequests.AddAsync(request);
             await context.SaveChangesAsync();
 
-            return addedRequest.State == EntityState.Added;
+            return addedRequest.Entity.Id;
         }
 
         public async Task<bool> DeleteAsync(Guid id)

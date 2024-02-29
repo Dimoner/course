@@ -11,12 +11,12 @@ namespace Dal.Roles
             this.context = context;
         }
 
-        public async Task<bool> CreateAsync(RoleDal role)
+        public async Task<Guid> CreateAsync(RoleDal role)
         {
             var addedRole = await context.Roles.AddAsync(role);
             await context.SaveChangesAsync();
 
-            return addedRole.State == EntityState.Added;
+            return addedRole.Entity.Id;
         }
 
         public async Task<bool> DeleteAsync(Guid id)

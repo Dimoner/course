@@ -11,12 +11,12 @@ namespace Dal.UserProfiles
             this.context = context;
         }
 
-        public async Task<bool> CreateAsync(UserProfileDal profile)
+        public async Task<Guid> CreateAsync(UserProfileDal profile)
         {
             var addedProfile = await context.UserProfiles.AddAsync(profile);
             await context.SaveChangesAsync();
 
-            return addedProfile.State == EntityState.Added;
+            return addedProfile.Entity.Id;
         }
 
         public async Task<bool> DeleteAsync(Guid id)

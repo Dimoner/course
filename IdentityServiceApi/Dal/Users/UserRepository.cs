@@ -11,12 +11,12 @@ namespace Dal.Users
             this.context = context;
         }
 
-        public async Task<bool> CreateAsync(UserDal user)
+        public async Task<Guid> CreateAsync(UserDal user)
         {
             var addedUser = await context.Users.AddAsync(user);
             await context.SaveChangesAsync();
 
-            return addedUser.State == EntityState.Added;
+            return addedUser.Entity.Id;
         }
 
         public async Task<bool> DeleteAsync(Guid id)

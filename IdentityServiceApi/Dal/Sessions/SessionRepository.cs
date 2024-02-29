@@ -11,12 +11,12 @@ namespace Dal.Sessions
             this.context = context;
         }
 
-        public async Task<bool> CreateAsync(SessionDal session)
+        public async Task<Guid> CreateAsync(SessionDal session)
         {
             var addedSession = await context.Sessions.AddAsync(session);
             await context.SaveChangesAsync();
 
-            return addedSession.State == EntityState.Added;
+            return addedSession.Entity.Id;
         }
 
         public async Task<bool> DeleteAsync(Guid id)

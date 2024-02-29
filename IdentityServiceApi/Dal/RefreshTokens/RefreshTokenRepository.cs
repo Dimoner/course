@@ -11,12 +11,12 @@ namespace Dal.RefreshTokens
             this.context = context;
         }
 
-        public async Task<bool> CreateAsync(RefreshToken token)
+        public async Task<Guid> CreateAsync(RefreshToken token)
         {
             var addedToken = await context.RefreshTokens.AddAsync(token);
             await context.SaveChangesAsync();
 
-            return addedToken.State == EntityState.Added;
+            return addedToken.Entity.Id;
         }
 
         public async Task<bool> DeleteAsync(Guid id)
