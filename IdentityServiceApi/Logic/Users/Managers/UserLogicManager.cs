@@ -35,9 +35,9 @@ namespace Logic.Users.Managers
             return hasDeleted;
         }
 
-        public async Task<IEnumerable<UserLogic>> GetAllUsersAsync()
+        public async Task<IEnumerable<UserLogic>> GetPageAsync(int pageNumber, int pageSize)
         {
-            var users = await userRepository.GetAllAsync();
+            var users = await userRepository.GetPageAsync(pageNumber, pageSize);
 
             return users.Select(user => new UserLogic
             {
