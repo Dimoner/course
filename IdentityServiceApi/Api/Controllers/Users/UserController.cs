@@ -1,5 +1,6 @@
 ﻿using Api.Controllers.Users.Requests;
 using Api.Controllers.Users.Responses;
+using AutoMapper;
 using Logic.Users.Managers;
 using Logic.Users.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -11,10 +12,12 @@ namespace Api.Controllers.Users
     public class UserController: ControllerBase
     {
         private readonly IUserLogicManager userLogicManager;
+        private readonly IMapper mapper;
 
-        public UserController(IUserLogicManager userLogicManager)
+        public UserController(IUserLogicManager userLogicManager, IMapper mapper)
         {
             this.userLogicManager = userLogicManager;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -23,17 +26,7 @@ namespace Api.Controllers.Users
         public async Task<IActionResult> GetPageAsync([FromQuery] int pageNumber, [FromQuery] int pageSize)
         {
             var allUsers = await userLogicManager.GetPageAsync(pageNumber, pageSize);
-            var infoResponses = allUsers.Select(user => new GetUserInfoResponse
-            {
-                Age = user.Age,
-                Email = user.Email,
-                FirstName = user.FirstName,
-                Id = user.Id,
-                Password = user.Password,
-                RegistrationDate = user.RegistrationDate,
-                RoleId = user.RoleId,
-                SecondName = user.SecondName
-            });
+            var infoResponses = allUsers.Select(user => mapper.Map<GetUserInfoResponse>(user));
 
             return Ok(infoResponses);
         }
@@ -43,16 +36,7 @@ namespace Api.Controllers.Users
         [ProducesResponseType(typeof(CreateUserResponse), 201)]
         public async Task<IActionResult> CreateUserAsync([FromBody] CreateUserRequest request)
         {
-            var res = await userLogicManager.CreateUserAsync(new UserLogic
-            {
-                Age = request.Age,
-                Email = request.Email,
-                FirstName = request.FirstName,
-                Password = request.Password,
-                RegistrationDate = request.RegistrationDate,
-                RoleId = request.RoleId,
-                SecondName = request.SecondName
-            });
+            var res = await userLogicManager.CreateUserAsync(mapper.Map<UserLogic>(request));
 
             var response = new CreateUserResponse { Id = res };
 
@@ -66,17 +50,7 @@ namespace Api.Controllers.Users
         {
             var user = await userLogicManager.GetUserAsync(id);
 
-            var response = new GetUserInfoResponse
-            {
-                Id = user.Id,
-                FirstName = user.FirstName,
-                Password = user.Password,
-                RegistrationDate = user.RegistrationDate,
-                Age = user.Age,
-                Email = user.Email,
-                RoleId = user.RoleId,
-                SecondName = user.SecondName
-            };
+            var response = mapper.Map<GetUserInfoResponse>(user);
 
             return Ok(response);
         }
@@ -95,29 +69,9 @@ namespace Api.Controllers.Users
         [ProducesResponseType(typeof(UpdateUserResponse), 200)]
         public async Task<IActionResult> UpdateUserAsync([FromBody] UpdateUserRequest request, [FromRoute] Guid id)
         {
-            var updatedUser = await userLogicManager.UpdateUserAsync(new UserLogic
-            {
-                Age = request.Age,
-                Email = request.Email,
-                RoleId = request.RoleId,
-                FirstName = request.FirstName,
-                Password = request.Password,
-                RegistrationDate = request.RegistrationDate,
-                Id = id,
-                SecondName = request.SecondName,
-            });
+            var updatedUser = await userLogicManager.UpdateUserAsync(mapper.Map<UserLogic>(request));
 
-            var reponse = new UpdateUserResponse
-            {
-                Id = id,
-                SecondName = updatedUser.SecondName,
-                FirstName = updatedUser.FirstName,
-                Password = updatedUser.Password,
-                RegistrationDate = updatedUser.RegistrationDate,
-                Age = updatedUser.Age,
-                Email = updatedUser.Email,
-                RoleId = updatedUser.RoleId,
-            };
+            var reponse = mapper.Map<UpdateUserResponse>(updatedUser);
 
             return Ok(reponse);
         }

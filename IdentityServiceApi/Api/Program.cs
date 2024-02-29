@@ -1,3 +1,5 @@
+using Api.Controllers.Users.Requests;
+using Api.Controllers.Users.Responses;
 using Dal.FriendRequests;
 using Dal.Friendships;
 using Dal.RefreshTokens;
@@ -8,6 +10,7 @@ using Dal.UserProfiles;
 using Dal.Users;
 using Logic.UserProfiles.Managers;
 using Logic.Users.Managers;
+using Logic.Users.Models;
 using Microsoft.AspNetCore.Mvc.Formatters;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,6 +41,35 @@ builder.Services.AddSingleton<IUserRepository, UserRepository>();
 // adding logic refs
 builder.Services.AddSingleton<IUserProfileLogicManager, UserProfileLogicManager>();
 builder.Services.AddSingleton<IUserLogicManager, UserLogicManager>();
+
+// adding mappers
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.CreateMap<CreateUserRequest, UserLogic>();
+
+    cfg.CreateMap<CreateUserRequest, UserLogic>();
+}, Array.Empty<System.Reflection.Assembly>());
+
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.CreateMap<UserLogic, GetUserInfoResponse>();
+
+    cfg.CreateMap<UserLogic, GetUserInfoResponse>();
+}, Array.Empty<System.Reflection.Assembly>());
+
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.CreateMap<UpdateUserRequest, UserLogic>();
+
+    cfg.CreateMap<UpdateUserRequest, UserLogic>();
+}, Array.Empty<System.Reflection.Assembly>());
+
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.CreateMap<UserLogic, UpdateUserResponse>();
+
+    cfg.CreateMap<UserLogic, UpdateUserResponse>();
+}, Array.Empty<System.Reflection.Assembly>());
 
 var app = builder.Build();
 
