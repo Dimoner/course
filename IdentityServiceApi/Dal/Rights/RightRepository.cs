@@ -11,7 +11,7 @@ namespace Dal.Rights
             this.context = context;
         }
 
-        public async Task<bool> Create(RightDal right)
+        public async Task<bool> CreateAsync(RightDal right)
         {
             var addedRight = await context.Rights.AddAsync(right);
             await context.SaveChangesAsync();
@@ -19,7 +19,7 @@ namespace Dal.Rights
             return addedRight.State == EntityState.Added;
         }
 
-        public async Task<bool> Delete(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var right = await context.Rights.FindAsync(id);
             if (right == null)
@@ -31,17 +31,17 @@ namespace Dal.Rights
             return removedRight.State == EntityState.Deleted;
         }
 
-        public async Task<RightDal?> Get(Guid id)
+        public async Task<RightDal?> GetAsync(Guid id)
         {
             return await context.Rights.FindAsync(id);
         }
 
-        public async Task<IEnumerable<RightDal>> GetAll()
+        public async Task<IEnumerable<RightDal>> GetAllAsync()
         {
             return await context.Rights.ToListAsync() ?? [];
         }
 
-        public async Task<RightDal> Update(RightDal right)
+        public async Task<RightDal> UpdateAsync(RightDal right)
         {
             var updatedRight = context.Rights.Update(right);
             await context.SaveChangesAsync();

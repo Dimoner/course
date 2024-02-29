@@ -11,7 +11,7 @@ namespace Dal.FriendRequests
             this.context = context;
         }
 
-        public async Task<bool> Create(FriendRequestDal request)
+        public async Task<bool> CreateAsync(FriendRequestDal request)
         {
             var addedRequest = await context.FriendRequests.AddAsync(request);
             await context.SaveChangesAsync();
@@ -19,7 +19,7 @@ namespace Dal.FriendRequests
             return addedRequest.State == EntityState.Added;
         }
 
-        public async Task<bool> Delete(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var request = await context.FriendRequests.FindAsync(id);
             if (request == null)
@@ -31,17 +31,17 @@ namespace Dal.FriendRequests
             return removedRequest.State == EntityState.Deleted;
         }
 
-        public async Task<FriendRequestDal?> Get(Guid userId)
+        public async Task<FriendRequestDal?> GetAsync(Guid userId)
         {
             return await context.FriendRequests.FindAsync(userId);
         }
 
-        public async Task<IEnumerable<FriendRequestDal>> GetAll()
+        public async Task<IEnumerable<FriendRequestDal>> GetAllAsync()
         {
             return await context.FriendRequests.ToListAsync() ?? [];
         }
 
-        public async Task<FriendRequestDal> Update(FriendRequestDal request)
+        public async Task<FriendRequestDal> UpdateAsync(FriendRequestDal request)
         {
             var updatedRequest = context.FriendRequests.Update(request);
             await context.SaveChangesAsync();

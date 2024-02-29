@@ -11,7 +11,7 @@ namespace Dal.Roles
             this.context = context;
         }
 
-        public async Task<bool> Create(RoleDal role)
+        public async Task<bool> CreateAsync(RoleDal role)
         {
             var addedRole = await context.Roles.AddAsync(role);
             await context.SaveChangesAsync();
@@ -19,7 +19,7 @@ namespace Dal.Roles
             return addedRole.State == EntityState.Added;
         }
 
-        public async Task<bool> Delete(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var role = await context.Roles.FindAsync(id);
             if (role == null)
@@ -31,17 +31,17 @@ namespace Dal.Roles
             return removedRole.State == EntityState.Deleted;
         }
 
-        public async Task<RoleDal?> Get(Guid userId)
+        public async Task<RoleDal?> GetAsync(Guid userId)
         {
             return await context.Roles.FindAsync(userId);
         }
 
-        public async Task<IEnumerable<RoleDal>> GetAll()
+        public async Task<IEnumerable<RoleDal>> GetAllAsync()
         {
             return await context.Roles.ToListAsync() ?? [];
         }
 
-        public async Task<RoleDal> Update(RoleDal role)
+        public async Task<RoleDal> UpdateAsync(RoleDal role)
         {
             var updatedRole = context.Roles.Update(role);
             await context.SaveChangesAsync();

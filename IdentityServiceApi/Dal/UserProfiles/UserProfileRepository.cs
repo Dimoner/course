@@ -11,7 +11,7 @@ namespace Dal.UserProfiles
             this.context = context;
         }
 
-        public async Task<bool> Create(UserProfileDal profile)
+        public async Task<bool> CreateAsync(UserProfileDal profile)
         {
             var addedProfile = await context.UserProfiles.AddAsync(profile);
             await context.SaveChangesAsync();
@@ -19,7 +19,7 @@ namespace Dal.UserProfiles
             return addedProfile.State == EntityState.Added;
         }
 
-        public async Task<bool> Delete(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var profile = await context.UserProfiles.FindAsync(id);
             if (profile == null)
@@ -31,17 +31,17 @@ namespace Dal.UserProfiles
             return removedProfile.State == EntityState.Deleted;
         }
 
-        public async Task<UserProfileDal?> Get(Guid id)
+        public async Task<UserProfileDal?> GetAsync(Guid id)
         {
             return await context.UserProfiles.FindAsync(id);
         }
 
-        public async Task<IEnumerable<UserProfileDal>> GetAll()
+        public async Task<IEnumerable<UserProfileDal>> GetAllAsync()
         {
             return await context.UserProfiles.ToListAsync() ?? [];
         }
 
-        public async Task<UserProfileDal> Update(UserProfileDal profile)
+        public async Task<UserProfileDal> UpdateAsync(UserProfileDal profile)
         {
             var updatedProfile = context.UserProfiles.Update(profile);
             await context.SaveChangesAsync();

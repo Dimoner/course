@@ -11,7 +11,7 @@ namespace Dal.RefreshTokens
             this.context = context;
         }
 
-        public async Task<bool> Create(RefreshToken token)
+        public async Task<bool> CreateAsync(RefreshToken token)
         {
             var addedToken = await context.RefreshTokens.AddAsync(token);
             await context.SaveChangesAsync();
@@ -19,7 +19,7 @@ namespace Dal.RefreshTokens
             return addedToken.State == EntityState.Added;
         }
 
-        public async Task<bool> Delete(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var token = await context.RefreshTokens.FindAsync(id);
             if (token == null)
@@ -31,17 +31,17 @@ namespace Dal.RefreshTokens
             return removedToken.State == EntityState.Deleted;
         }
 
-        public async Task<RefreshToken?> Get(Guid id)
+        public async Task<RefreshToken?> GetAsync(Guid id)
         {
             return await context.RefreshTokens.FindAsync(id);
         }
 
-        public async Task<IEnumerable<RefreshToken>> GetAll()
+        public async Task<IEnumerable<RefreshToken>> GetAllAsync()
         {
             return await context.RefreshTokens.ToListAsync() ?? [];
         }
 
-        public async Task<RefreshToken> Update(RefreshToken token)
+        public async Task<RefreshToken> UpdateAsync(RefreshToken token)
         {
             var updatedToken = context.RefreshTokens.Update(token);
             await context.SaveChangesAsync();

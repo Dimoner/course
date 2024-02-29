@@ -11,7 +11,7 @@ namespace Dal.Sessions
             this.context = context;
         }
 
-        public async Task<bool> Create(SessionDal session)
+        public async Task<bool> CreateAsync(SessionDal session)
         {
             var addedSession = await context.Sessions.AddAsync(session);
             await context.SaveChangesAsync();
@@ -19,7 +19,7 @@ namespace Dal.Sessions
             return addedSession.State == EntityState.Added;
         }
 
-        public async Task<bool> Delete(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var session = await context.Sessions.FindAsync(id);
             if (session == null)
@@ -31,17 +31,17 @@ namespace Dal.Sessions
             return removedSession.State == EntityState.Deleted;
         }
 
-        public async Task<SessionDal?> Get(Guid id)
+        public async Task<SessionDal?> GetAsync(Guid id)
         {
             return await context.Sessions.FindAsync(id);
         }
 
-        public async Task<IEnumerable<SessionDal>> GetAll()
+        public async Task<IEnumerable<SessionDal>> GetAllAsync()
         {
             return await context.Sessions.ToListAsync() ?? [];
         }
 
-        public async Task<SessionDal> Update(SessionDal session)
+        public async Task<SessionDal> UpdateAsync(SessionDal session)
         {
             var updatedSession = context.Sessions.Update(session);
             await context.SaveChangesAsync();

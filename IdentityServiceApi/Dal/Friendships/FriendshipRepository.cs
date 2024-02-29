@@ -11,7 +11,7 @@ namespace Dal.Friendships
             this.context = context;
         }
 
-        public async Task<bool> Create(FriendshipDal friendship)
+        public async Task<bool> CreateAsync(FriendshipDal friendship)
         {
             var addedFriendship = await context.Friendships.AddAsync(friendship);
             await context.SaveChangesAsync();
@@ -19,7 +19,7 @@ namespace Dal.Friendships
             return addedFriendship.State == EntityState.Added;
         }
 
-        public async Task<bool> Delete(Guid userId)
+        public async Task<bool> DeleteAsync(Guid userId)
         {
             var friendship = await context.Friendships.FindAsync(userId);
             if (friendship == null)
@@ -31,17 +31,17 @@ namespace Dal.Friendships
             return removedFriendship.State == EntityState.Deleted;
         }
 
-        public async Task<FriendshipDal?> Get(Guid userId)
+        public async Task<FriendshipDal?> GetAsync(Guid userId)
         {
             return await context.Friendships.FindAsync(userId);
         }
 
-        public async Task<IEnumerable<FriendshipDal>> GetAll()
+        public async Task<IEnumerable<FriendshipDal>> GetAllAsync()
         {
             return await context.Friendships.ToListAsync() ?? [];
         }
 
-        public async Task<FriendshipDal> Update(FriendshipDal friendship)
+        public async Task<FriendshipDal> UpdateAsync(FriendshipDal friendship)
         {
             var updatedFriendship = context.Friendships.Update(friendship);
             await context.SaveChangesAsync();

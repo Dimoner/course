@@ -11,7 +11,7 @@ namespace Dal.Users
             this.context = context;
         }
 
-        public async Task<bool> Create(UserDal user)
+        public async Task<bool> CreateAsync(UserDal user)
         {
             var addedUser = await context.Users.AddAsync(user);
             await context.SaveChangesAsync();
@@ -19,7 +19,7 @@ namespace Dal.Users
             return addedUser.State == EntityState.Added;
         }
 
-        public async Task<bool> Delete(Guid id)
+        public async Task<bool> DeleteAsync(Guid id)
         {
             var user = await context.Users.FindAsync(id);
             if (user == null)
@@ -31,17 +31,17 @@ namespace Dal.Users
             return removedUser.State == EntityState.Deleted;
         }
 
-        public async Task<UserDal?> Get(Guid id)
+        public async Task<UserDal?> GetAsync(Guid id)
         {
             return await context.Users.FindAsync(id);
         }
 
-        public async Task<IEnumerable<UserDal>> GetAll()
+        public async Task<IEnumerable<UserDal>> GetAllAsync()
         {
             return await context.Users.ToListAsync() ?? [];
         }
 
-        public async Task<UserDal> Update(UserDal user)
+        public async Task<UserDal> UpdateAsync(UserDal user)
         {
             var updatedUser = context.Users.Update(user);
             await context.SaveChangesAsync();
