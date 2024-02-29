@@ -18,10 +18,11 @@ namespace Api.Controllers.Users
         }
 
         [HttpGet]
+        [Produces("application/json", "application/xml")]
         [ProducesResponseType(typeof(IEnumerable<GetUserInfoResponse>), 200)]
-        public async Task<IActionResult> GetAllUsersAsync()
+        public async Task<IActionResult> GetPageAsync([FromQuery] int pageNumber, [FromQuery] int pageSize)
         {
-            var allUsers = await userLogicManager.GetAllUsersAsync();
+            var allUsers = await userLogicManager.GetPageAsync(pageNumber, pageSize);
             var infoResponses = allUsers.Select(user => new GetUserInfoResponse
             {
                 Age = user.Age,
@@ -38,6 +39,7 @@ namespace Api.Controllers.Users
         }
 
         [HttpPost]
+        [Produces("application/json", "application/xml")]
         [ProducesResponseType(typeof(CreateUserResponse), 201)]
         public async Task<IActionResult> CreateUserAsync([FromBody] CreateUserRequest request)
         {
@@ -58,6 +60,7 @@ namespace Api.Controllers.Users
         }
 
         [HttpGet("{id}")]
+        [Produces("application/json", "application/xml")]
         [ProducesResponseType(typeof(GetUserInfoResponse), 200)]
         public async Task<IActionResult> GetUserInfoAsync([FromRoute] Guid id)
         {
@@ -79,15 +82,16 @@ namespace Api.Controllers.Users
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(200)]
+        [ProducesResponseType(204)]
         public async Task<IActionResult> DeleteUserAsync([FromRoute] Guid id)
         {
             await userLogicManager.DeleteUserAsync(id);
 
-            return Ok();
+            return StatusCode(204);
         }
 
         [HttpPut("{id}")]
+        [Produces("application/json", "application/xml")]
         [ProducesResponseType(typeof(UpdateUserResponse), 200)]
         public async Task<IActionResult> UpdateUserAsync([FromBody] UpdateUserRequest request, [FromRoute] Guid id)
         {
