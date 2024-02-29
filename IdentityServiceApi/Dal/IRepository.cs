@@ -1,4 +1,4 @@
-﻿namespace Dal.Repositories
+﻿namespace Dal
 {
     public interface IRepository<T> where T : class
     {

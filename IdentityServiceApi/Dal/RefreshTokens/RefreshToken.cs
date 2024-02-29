@@ -1,8 +1,8 @@
 ﻿using Core.Dal.Base;
 
-namespace Dal.Models
+namespace Dal.RefreshTokens
 {
-    public record RefreshToken:BaseEntity
+    public record RefreshToken : BaseEntity
     {
         public Guid UserId { get; init; }
         public string Token { get; init; } = null!;

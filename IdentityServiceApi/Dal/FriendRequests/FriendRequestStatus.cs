@@ -1,4 +1,4 @@
-﻿namespace Dal.Models
+﻿namespace Dal.FriendRequests
 {
     public enum FriendRequestStatus
     {

@@ -1,8 +1,8 @@
 ﻿using Core.Dal.Base;
 
-namespace Dal.Models
+namespace Dal.Sessions
 {
-    public record SessionDal: BaseEntity
+    public record SessionDal : BaseEntity
     {
         public Guid UserId { get; init; }
         public string Token { get; init; } = null!;

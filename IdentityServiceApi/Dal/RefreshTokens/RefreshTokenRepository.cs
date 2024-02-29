@@ -1,9 +1,8 @@
-﻿using Dal.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Dal.Repositories
+namespace Dal.RefreshTokens
 {
-    public class RefreshTokenRepository: IRepository<RefreshToken>
+    public class RefreshTokenRepository : IRepository<RefreshToken>
     {
         private readonly IdentityServiceContext context;
 

@@ -1,9 +1,8 @@
-﻿using Dal.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Dal.Repositories
+namespace Dal.FriendRequests
 {
-    public class FriendRequestRepository: IRepository<FriendRequestDal>
+    public class FriendRequestRepository : IRepository<FriendRequestDal>
     {
         private readonly IdentityServiceContext context;
 

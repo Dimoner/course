@@ -1,4 +1,11 @@
-﻿using Dal.Models;
+﻿using Dal.FriendRequests;
+using Dal.Friendships;
+using Dal.RefreshTokens;
+using Dal.Rights;
+using Dal.Roles;
+using Dal.Sessions;
+using Dal.UserProfiles;
+using Dal.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace Dal

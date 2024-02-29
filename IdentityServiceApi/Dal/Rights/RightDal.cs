@@ -1,8 +1,8 @@
 ﻿using Core.Dal.Base;
 
-namespace Dal.Models
+namespace Dal.Rights
 {
-    public record RightDal: BaseEntity
+    public record RightDal : BaseEntity
     {
         public string Name { get; init; } = null!;
     }

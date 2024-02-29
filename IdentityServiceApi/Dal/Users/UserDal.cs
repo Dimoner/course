@@ -1,8 +1,8 @@
 ﻿using Core.Dal.Base;
 
-namespace Dal.Models
+namespace Dal.Users
 {
-    public record UserDal: BaseEntity
+    public record UserDal : BaseEntity
     {
         public string FirstName { get; init; } = null!;
         public string SecondName { get; init; } = null!;

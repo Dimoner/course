@@ -1,9 +1,8 @@
-﻿using Dal.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Dal.Repositories
+namespace Dal.Roles
 {
-    public class RoleRepository: IRepository<RoleDal>
+    public class RoleRepository : IRepository<RoleDal>
     {
         private readonly IdentityServiceContext context;
 

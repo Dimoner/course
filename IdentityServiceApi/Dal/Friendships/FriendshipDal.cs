@@ -1,4 +1,4 @@
-﻿namespace Dal.Models
+﻿namespace Dal.Friendships
 {
     public class FriendshipDal
     {

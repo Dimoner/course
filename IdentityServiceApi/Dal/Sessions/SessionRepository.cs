@@ -1,9 +1,8 @@
-﻿using Dal.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Dal.Repositories
+namespace Dal.Sessions
 {
-    public class SessionRepository: IRepository<SessionDal>
+    public class SessionRepository : IRepository<SessionDal>
     {
         private readonly IdentityServiceContext context;
 

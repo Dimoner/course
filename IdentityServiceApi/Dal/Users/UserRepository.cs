@@ -1,14 +1,13 @@
-﻿using Dal.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Dal.Repositories
+namespace Dal.Users
 {
     public class UserRepository : IRepository<UserDal>
     {
         private readonly IdentityServiceContext context;
 
-        public UserRepository(IdentityServiceContext context) 
-        { 
+        public UserRepository(IdentityServiceContext context)
+        {
             this.context = context;
         }
 
@@ -46,7 +45,7 @@ namespace Dal.Repositories
         {
             var updatedUser = context.Users.Update(user);
             await context.SaveChangesAsync();
-            
+
             return updatedUser.Entity;
         }
     }

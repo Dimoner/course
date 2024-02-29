@@ -1,7 +1,6 @@
-﻿using Dal.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Dal.Repositories
+namespace Dal.UserProfiles
 {
     public class UserProfileRepository : IRepository<UserProfileDal>
     {

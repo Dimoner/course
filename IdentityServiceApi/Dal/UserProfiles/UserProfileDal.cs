@@ -1,8 +1,8 @@
 ﻿using Core.Dal.Base;
 
-namespace Dal.Models
+namespace Dal.UserProfiles
 {
-    public record UserProfileDal: BaseEntity
+    public record UserProfileDal : BaseEntity
     {
         public Guid UserId { get; init; }
         public string? Status { get; init; }

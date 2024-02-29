@@ -1,9 +1,8 @@
-﻿using Dal.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Dal.Repositories
+namespace Dal.Friendships
 {
-    public class FriendshipRepository: IRepository<FriendshipDal>
+    public class FriendshipRepository : IRepository<FriendshipDal>
     {
         private readonly IdentityServiceContext context;
 

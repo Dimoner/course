@@ -1,8 +1,8 @@
 ﻿using Core.Dal.Base;
 
-namespace Dal.Models
+namespace Dal.FriendRequests
 {
-    public record FriendRequestDal: BaseEntity
+    public record FriendRequestDal : BaseEntity
     {
         public Guid SenderUserId { get; init; }
         public Guid ReceiverUserId { get; init; }

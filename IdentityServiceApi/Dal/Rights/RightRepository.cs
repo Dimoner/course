@@ -1,9 +1,8 @@
-﻿using Dal.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Dal.Repositories
+namespace Dal.Rights
 {
-    public class RightRepository: IRepository<RightDal>
+    public class RightRepository : IRepository<RightDal>
     {
         private readonly IdentityServiceContext context;
 
