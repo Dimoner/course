@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Core\Core.csproj" />
+    <Reference Include="Core">
+      <HintPath>..\..\Core\obj\Debug\net8.0\Core.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>
