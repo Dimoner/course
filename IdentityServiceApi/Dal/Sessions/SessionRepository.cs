@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Dal.Base;
+using Dal.UserProfiles;
+using Microsoft.EntityFrameworkCore;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Dal.Sessions
@@ -47,9 +49,16 @@ namespace Dal.Sessions
             return await context.Sessions.FindAsync(id);
         }
 
-        public async Task<IEnumerable<SessionDal>> GetAllAsync()
+        public async Task<PageList<SessionDal>> GetPageAsync(int pageNumber, int pageSize)
         {
-            return await context.Sessions.ToListAsync() ?? [];
+            var count = context.Sessions.Count();
+            var sessions = await context.Sessions
+                .OrderBy(session => session.CreatedAt)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PageList<SessionDal>(sessions, count, pageNumber, pageSize);
         }
 
         public async Task<SessionDal> UpdateAsync(SessionDal session)

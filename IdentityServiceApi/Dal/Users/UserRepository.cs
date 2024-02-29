@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Dal.Base;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dal.Users
 {
@@ -44,6 +45,18 @@ namespace Dal.Users
         public async Task<IEnumerable<UserDal>> GetAllAsync()
         {
             return await context.Users.ToListAsync() ?? [];
+        }
+
+        public async Task<PageList<UserDal>> GetPageAsync(int pageNumber, int pageSize)
+        {
+            var count = context.Users.Count();
+            var users = await context.Users
+                .OrderBy(user => user.Email)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PageList<UserDal>(users, count, pageNumber, pageSize);
         }
 
         public async Task<UserDal> UpdateAsync(UserDal user)

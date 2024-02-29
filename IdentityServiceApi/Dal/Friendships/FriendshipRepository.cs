@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Dal.Base;
+using Dal.RefreshTokens;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dal.Friendships
 {
@@ -46,9 +48,16 @@ namespace Dal.Friendships
             return await context.Friendships.FindAsync(userId);
         }
 
-        public async Task<IEnumerable<FriendshipDal>> GetAllAsync()
+        public async Task<PageList<FriendshipDal>> GetPageAsync(int pageNumber, int pageSize)
         {
-            return await context.Friendships.ToListAsync() ?? [];
+            var count = context.Friendships.Count();
+            var friendships = await context.Friendships
+                .OrderBy(friendship => friendship.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PageList<FriendshipDal>(friendships, count, pageNumber, pageSize);
         }
 
         public async Task<FriendshipDal> UpdateAsync(FriendshipDal friendship)

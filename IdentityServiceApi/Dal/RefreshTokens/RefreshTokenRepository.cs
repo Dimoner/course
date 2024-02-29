@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Dal.Base;
+using Dal.Rights;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dal.RefreshTokens
 {
@@ -46,9 +48,16 @@ namespace Dal.RefreshTokens
             return await context.RefreshTokens.FindAsync(id);
         }
 
-        public async Task<IEnumerable<RefreshToken>> GetAllAsync()
+        public async Task<PageList<RefreshToken>> GetPageAsync(int pageNumber, int pageSize)
         {
-            return await context.RefreshTokens.ToListAsync() ?? [];
+            var count = context.RefreshTokens.Count();
+            var tokens = await context.RefreshTokens
+                .OrderBy(token => token.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PageList<RefreshToken>(tokens, count, pageNumber, pageSize);
         }
 
         public async Task<RefreshToken> UpdateAsync(RefreshToken token)

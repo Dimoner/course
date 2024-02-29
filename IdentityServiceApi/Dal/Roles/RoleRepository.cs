@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Dal.Base;
+using Dal.Sessions;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dal.Roles
 {
@@ -41,9 +43,16 @@ namespace Dal.Roles
             return await context.Roles.FindAsync(userId);
         }
 
-        public async Task<IEnumerable<RoleDal>> GetAllAsync()
+        public async Task<PageList<RoleDal>> GetPageAsync(int pageNumber, int pageSize)
         {
-            return await context.Roles.ToListAsync() ?? [];
+            var count = context.Roles.Count();
+            var roles = await context.Roles
+                .OrderBy(role => role.Name)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PageList<RoleDal>(roles, count, pageNumber, pageSize);
         }
 
         public async Task<RoleDal> UpdateAsync(RoleDal role)

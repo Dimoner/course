@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Dal.Base;
+using Dal.Friendships;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dal.FriendRequests
 {
@@ -46,9 +48,16 @@ namespace Dal.FriendRequests
             return await context.FriendRequests.FindAsync(userId);
         }
 
-        public async Task<IEnumerable<FriendRequestDal>> GetAllAsync()
+        public async Task<PageList<FriendRequestDal>> GetPageAsync(int pageNumber, int pageSize)
         {
-            return await context.FriendRequests.ToListAsync() ?? [];
+            var count = context.FriendRequests.Count();
+            var requests = await context.FriendRequests
+                .OrderBy(request => request.Id)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PageList<FriendRequestDal>(requests, count, pageNumber, pageSize);
         }
 
         public async Task<FriendRequestDal> UpdateAsync(FriendRequestDal request)

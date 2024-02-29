@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Core.Dal.Base;
+using Dal.Roles;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 
 namespace Dal.Rights
@@ -42,9 +44,16 @@ namespace Dal.Rights
             return await context.Rights.FindAsync(id);
         }
 
-        public async Task<IEnumerable<RightDal>> GetAllAsync()
+        public async Task<PageList<RightDal>> GetPageAsync(int pageNumber, int pageSize)
         {
-            return await context.Rights.ToListAsync() ?? [];
+            var count = context.Rights.Count();
+            var rights = await context.Rights
+                .OrderBy(right => right.Name)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PageList<RightDal>(rights, count, pageNumber, pageSize);
         }
 
         public async Task<RightDal> UpdateAsync(RightDal right)

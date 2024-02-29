@@ -29,9 +29,9 @@ namespace Logic.UserProfiles.Managers
             return await profileRepository.DeleteAsync(profileId);
         }
 
-        public async Task<IEnumerable<UserProfileLogic>> GetAllUsersProfilesAsync()
+        public async Task<IEnumerable<UserProfileLogic>> GetPageAsync(int pageNumber, int pageSize)
         {
-            var profiles = await profileRepository.GetAllAsync();
+            var profiles = await profileRepository.GetPageAsync(pageNumber, pageSize);
 
             return profiles.Select(profile => new UserProfileLogic
             {
