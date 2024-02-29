@@ -2,7 +2,7 @@
 
 namespace Dal.UserProfiles
 {
-    public class UserProfileRepository : IRepository<UserProfileDal>
+    public class UserProfileRepository : IUserProfileRepository
     {
         private readonly IdentityServiceContext context;
 

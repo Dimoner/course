@@ -2,7 +2,7 @@
 
 namespace Dal.Rights
 {
-    public class RightRepository : IRepository<RightDal>
+    public class RightRepository : IRightRepository
     {
         private readonly IdentityServiceContext context;
 

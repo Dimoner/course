@@ -2,7 +2,7 @@
 
 namespace Dal.RefreshTokens
 {
-    public class RefreshTokenRepository : IRepository<RefreshToken>
+    public class RefreshTokenRepository : IRefreshTokenRepository
     {
         private readonly IdentityServiceContext context;
 

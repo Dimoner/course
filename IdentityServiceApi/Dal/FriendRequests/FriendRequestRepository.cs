@@ -2,7 +2,7 @@
 
 namespace Dal.FriendRequests
 {
-    public class FriendRequestRepository : IRepository<FriendRequestDal>
+    public class FriendRequestRepository : IFriendRequestRepository
     {
         private readonly IdentityServiceContext context;
 

@@ -2,7 +2,7 @@
 
 namespace Dal.Sessions
 {
-    public class SessionRepository : IRepository<SessionDal>
+    public class SessionRepository : ISessionRepository
     {
         private readonly IdentityServiceContext context;
 

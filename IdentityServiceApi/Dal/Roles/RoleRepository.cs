@@ -2,7 +2,7 @@
 
 namespace Dal.Roles
 {
-    public class RoleRepository : IRepository<RoleDal>
+    public class RoleRepository : IRoleRepository
     {
         private readonly IdentityServiceContext context;
 
