@@ -43,7 +43,7 @@ namespace Dal.FriendRequests
             return await context.FriendRequests.FindAsync(userId);
         }
 
-        public async Task<FriendRequestDal?> GetByUserAsync(Guid userId)
+        public async Task<FriendRequestDal?> GetByUserIdAsync(Guid userId)
         {
             return await context.FriendRequests.FindAsync(userId);
         }
