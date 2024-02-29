@@ -13,10 +13,15 @@ namespace Dal.FriendRequests
 
         public async Task<Guid> CreateAsync(FriendRequestDal request)
         {
-            var addedRequest = await context.FriendRequests.AddAsync(request);
+            if (request.Id != Guid.Empty)
+                throw new InvalidOperationException();
+
+            var id = Guid.NewGuid();
+            var entity = request with { Id = id };
+            await context.FriendRequests.AddAsync(entity);
             await context.SaveChangesAsync();
 
-            return addedRequest.Entity.Id;
+            return id;
         }
 
         public async Task<bool> DeleteAsync(Guid id)

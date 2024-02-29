@@ -13,10 +13,15 @@ namespace Dal.Users
 
         public async Task<Guid> CreateAsync(UserDal user)
         {
-            var addedUser = await context.Users.AddAsync(user);
+            if (user.Id != Guid.Empty)
+                throw new InvalidOperationException();
+
+            var id = Guid.NewGuid();
+            var entity = user with { Id = id };
+            await context.Users.AddAsync(entity);
             await context.SaveChangesAsync();
 
-            return addedUser.Entity.Id;
+            return id;
         }
 
         public async Task<bool> DeleteAsync(Guid id)

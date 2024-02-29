@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Data;
 
 namespace Dal.Rights
 {
@@ -13,10 +14,15 @@ namespace Dal.Rights
 
         public async Task<Guid> CreateAsync(RightDal right)
         {
-            var addedRight = await context.Rights.AddAsync(right);
+            if (right.Id != Guid.Empty)
+                throw new InvalidOperationException();
+
+            var id = Guid.NewGuid();
+            var entity = right with { Id = id };
+            await context.Rights.AddAsync(entity);
             await context.SaveChangesAsync();
 
-            return addedRight.Entity.Id;
+            return id;
         }
 
         public async Task<bool> DeleteAsync(Guid id)

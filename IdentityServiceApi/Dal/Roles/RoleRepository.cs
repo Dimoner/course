@@ -13,10 +13,15 @@ namespace Dal.Roles
 
         public async Task<Guid> CreateAsync(RoleDal role)
         {
-            var addedRole = await context.Roles.AddAsync(role);
+            if (role.Id != Guid.Empty)
+                throw new InvalidOperationException();
+
+            var id = Guid.NewGuid();
+            var entity = role with { Id = id };
+            await context.Roles.AddAsync(entity);
             await context.SaveChangesAsync();
 
-            return addedRole.Entity.Id;
+            return id;
         }
 
         public async Task<bool> DeleteAsync(Guid id)

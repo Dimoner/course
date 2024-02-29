@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Dal.Sessions
 {
@@ -13,10 +14,15 @@ namespace Dal.Sessions
 
         public async Task<Guid> CreateAsync(SessionDal session)
         {
-            var addedSession = await context.Sessions.AddAsync(session);
+            if (session.Id != Guid.Empty)
+                throw new InvalidOperationException();
+
+            var id = Guid.NewGuid();
+            var entity = session with { Id = id };
+            await context.Sessions.AddAsync(entity);
             await context.SaveChangesAsync();
 
-            return addedSession.Entity.Id;
+            return id;
         }
 
         public async Task<bool> DeleteAsync(Guid id)

@@ -13,10 +13,15 @@ namespace Dal.UserProfiles
 
         public async Task<Guid> CreateAsync(UserProfileDal profile)
         {
-            var addedProfile = await context.UserProfiles.AddAsync(profile);
+            if (profile.Id != Guid.Empty)
+                throw new InvalidOperationException();
+
+            var id = Guid.NewGuid();
+            var entity = profile with { Id = id };
+            await context.UserProfiles.AddAsync(entity);
             await context.SaveChangesAsync();
 
-            return addedProfile.Entity.Id;
+            return id;
         }
 
         public async Task<bool> DeleteAsync(Guid id)

@@ -13,10 +13,15 @@ namespace Dal.RefreshTokens
 
         public async Task<Guid> CreateAsync(RefreshToken token)
         {
-            var addedToken = await context.RefreshTokens.AddAsync(token);
+            if (token.Id != Guid.Empty)
+                throw new InvalidOperationException();
+
+            var id = Guid.NewGuid();
+            var entity = token with { Id = id };
+            await context.RefreshTokens.AddAsync(entity);
             await context.SaveChangesAsync();
 
-            return addedToken.Entity.Id;
+            return id;
         }
 
         public async Task<bool> DeleteAsync(Guid id)

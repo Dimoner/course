@@ -13,10 +13,15 @@ namespace Dal.Friendships
 
         public async Task<Guid> CreateAsync(FriendshipDal friendship)
         {
-            var addedFriendship = await context.Friendships.AddAsync(friendship);
+            if (friendship.Id != Guid.Empty)
+                throw new InvalidOperationException();
+
+            var id = Guid.NewGuid();
+            var entity = friendship with { Id = id };
+            await context.Friendships.AddAsync(entity);
             await context.SaveChangesAsync();
 
-            return addedFriendship.Entity.UserId1;
+            return id;
         }
 
         public async Task<bool> DeleteAsync(Guid userId)
