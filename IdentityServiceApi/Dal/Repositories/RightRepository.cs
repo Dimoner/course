@@ -37,6 +37,11 @@ namespace Dal.Repositories
             return await context.Rights.FindAsync(id);
         }
 
+        public async Task<IEnumerable<RightDal>> GetAll()
+        {
+            return await context.Rights.ToListAsync() ?? [];
+        }
+
         public async Task<RightDal> Update(RightDal right)
         {
             var updatedRight = context.Rights.Update(right);

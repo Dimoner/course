@@ -37,6 +37,11 @@ namespace Dal.Repositories
             return await context.Roles.FindAsync(userId);
         }
 
+        public async Task<IEnumerable<RoleDal>> GetAll()
+        {
+            return await context.Roles.ToListAsync() ?? [];
+        }
+
         public async Task<RoleDal> Update(RoleDal role)
         {
             var updatedRole = context.Roles.Update(role);

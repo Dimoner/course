@@ -37,6 +37,11 @@ namespace Dal.Repositories
             return await context.Sessions.FindAsync(id);
         }
 
+        public async Task<IEnumerable<SessionDal>> GetAll()
+        {
+            return await context.Sessions.ToListAsync() ?? [];
+        }
+
         public async Task<SessionDal> Update(SessionDal session)
         {
             var updatedSession = context.Sessions.Update(session);

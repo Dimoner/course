@@ -37,6 +37,11 @@ namespace Dal.Repositories
             return await context.FriendRequests.FindAsync(userId);
         }
 
+        public async Task<IEnumerable<FriendRequestDal>> GetAll()
+        {
+            return await context.FriendRequests.ToListAsync() ?? [];
+        }
+
         public async Task<FriendRequestDal> Update(FriendRequestDal request)
         {
             var updatedRequest = context.FriendRequests.Update(request);

@@ -37,6 +37,11 @@ namespace Dal.Repositories
             return await context.UserProfiles.FindAsync(id);
         }
 
+        public async Task<IEnumerable<UserProfileDal>> GetAll()
+        {
+            return await context.UserProfiles.ToListAsync() ?? [];
+        }
+
         public async Task<UserProfileDal> Update(UserProfileDal profile)
         {
             var updatedProfile = context.UserProfiles.Update(profile);

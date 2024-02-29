@@ -37,6 +37,11 @@ namespace Dal.Repositories
             return await context.RefreshTokens.FindAsync(id);
         }
 
+        public async Task<IEnumerable<RefreshToken>> GetAll()
+        {
+            return await context.RefreshTokens.ToListAsync() ?? [];
+        }
+
         public async Task<RefreshToken> Update(RefreshToken token)
         {
             var updatedToken = context.RefreshTokens.Update(token);
