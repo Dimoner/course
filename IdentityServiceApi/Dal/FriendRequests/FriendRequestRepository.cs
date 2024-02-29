@@ -41,6 +41,11 @@ namespace Dal.FriendRequests
             return await context.FriendRequests.FindAsync(userId);
         }
 
+        public async Task<FriendRequestDal?> GetByUserAsync(Guid userId)
+        {
+            return await context.FriendRequests.FindAsync(userId);
+        }
+
         public async Task<IEnumerable<FriendRequestDal>> GetAllAsync()
         {
             return await context.FriendRequests.ToListAsync() ?? [];

@@ -41,6 +41,11 @@ namespace Dal.RefreshTokens
             return await context.RefreshTokens.FindAsync(id);
         }
 
+        public async Task<RefreshToken?> GetByUserIdAsync(Guid id)
+        {
+            return await context.RefreshTokens.FindAsync(id);
+        }
+
         public async Task<IEnumerable<RefreshToken>> GetAllAsync()
         {
             return await context.RefreshTokens.ToListAsync() ?? [];

@@ -41,6 +41,11 @@ namespace Dal.UserProfiles
             return await context.UserProfiles.FindAsync(id);
         }
 
+        public async Task<UserProfileDal?> GetByUserIdAsync(Guid id)
+        {
+            return await context.UserProfiles.FindAsync(id);
+        }
+
         public async Task<IEnumerable<UserProfileDal>> GetAllAsync()
         {
             return await context.UserProfiles.ToListAsync() ?? [];

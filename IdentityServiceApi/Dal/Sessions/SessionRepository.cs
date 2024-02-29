@@ -42,6 +42,11 @@ namespace Dal.Sessions
             return await context.Sessions.FindAsync(id);
         }
 
+        public async Task<SessionDal?> GetByUserIdAsync(Guid id)
+        {
+            return await context.Sessions.FindAsync(id);
+        }
+
         public async Task<IEnumerable<SessionDal>> GetAllAsync()
         {
             return await context.Sessions.ToListAsync() ?? [];
