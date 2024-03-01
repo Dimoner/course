@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dal", "Dal\Dal.csproj", "{4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libs", "Libs", "{E71AFEE6-D9CF-43C0-8F37-FC5F2F15164F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleCore", "..\Libs\ExampleCore\ExampleCore.csproj", "{FB4E48C2-DD93-4821-A4DE-D49464CFDCF1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectCore", "..\Libs\ProjectCore\ProjectCore.csproj", "{FB4E48C2-DD93-4821-A4DE-D49464CFDCF1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
