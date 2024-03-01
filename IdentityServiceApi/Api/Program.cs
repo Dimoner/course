@@ -1,5 +1,6 @@
 using Api.Controllers.Users.Requests;
 using Api.Controllers.Users.Responses;
+using Dal;
 using Dal.FriendRequests;
 using Dal.Friendships;
 using Dal.RefreshTokens;
@@ -12,6 +13,7 @@ using Logic.UserProfiles.Managers;
 using Logic.Users.Managers;
 using Logic.Users.Models;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,19 +30,23 @@ builder.Services.AddControllers(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// adding dbcontext
+string connection = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<IdentityServiceContext>(options => options.UseNpgsql(connection));
+
 // adding dal refs
-builder.Services.AddSingleton<IFriendRequestRepository, FriendRequestRepository>();
-builder.Services.AddSingleton<IFriendshipRepository, FriendshipRepository>();
-builder.Services.AddSingleton<IRefreshTokenRepository, RefreshTokenRepository>();
-builder.Services.AddSingleton<IRightRepository, RightRepository>();
-builder.Services.AddSingleton<IRoleRepository, RoleRepository>();
-builder.Services.AddSingleton<ISessionRepository, SessionRepository>();
-builder.Services.AddSingleton<IUserProfileRepository, UserProfileRepository>();
-builder.Services.AddSingleton<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IFriendRequestRepository, FriendRequestRepository>();
+builder.Services.AddScoped<IFriendshipRepository, FriendshipRepository>();
+builder.Services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
+builder.Services.AddScoped<IRightRepository, RightRepository>();
+builder.Services.AddScoped<IRoleRepository, RoleRepository>();
+builder.Services.AddScoped<ISessionRepository, SessionRepository>();
+builder.Services.AddScoped<IUserProfileRepository, UserProfileRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // adding logic refs
-builder.Services.AddSingleton<IUserProfileLogicManager, UserProfileLogicManager>();
-builder.Services.AddSingleton<IUserLogicManager, UserLogicManager>();
+builder.Services.AddScoped<IUserProfileLogicManager, UserProfileLogicManager>();
+builder.Services.AddScoped<IUserLogicManager, UserLogicManager>();
 
 // adding mappers
 builder.Services.AddAutoMapper(cfg =>
