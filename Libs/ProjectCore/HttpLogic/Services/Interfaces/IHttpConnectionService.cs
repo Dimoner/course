@@ -1,4 +1,4 @@
-﻿namespace ExampleCore.HttpLogic.Services.Interfaces;
+﻿namespace ProjectCore.HttpLogic.Services.Interfaces;
 
 /// <summary>
 /// Функционал для HTTP-соединения

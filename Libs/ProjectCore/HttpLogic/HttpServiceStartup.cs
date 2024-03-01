@@ -1,12 +1,9 @@
-﻿using CoreLib.HttpServiceV2.Services.Interfaces;
-using ExampleCore.HttpLogic.Services;
-using ExampleCore.HttpLogic.Services.Interfaces;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Options;
+using ProjectCore.HttpLogic.Services;
+using ProjectCore.HttpLogic.Services.Interfaces;
 
-namespace ExampleCore.HttpLogic;
+namespace ProjectCore.HttpLogic;
 
 /// <summary>
 /// Регистрация в DI сервисов для HTTP-соединений

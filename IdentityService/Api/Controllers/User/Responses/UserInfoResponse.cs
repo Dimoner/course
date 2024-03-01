@@ -3,7 +3,7 @@
 /// <summary>
 /// Информация о себе
 /// </summary>
-public class UserInfoResponse : Profile2InfoResponse
+public class UserInfoResponse : ProfileInfoResponse
 {
     /// <summary>
     /// Email пользователя

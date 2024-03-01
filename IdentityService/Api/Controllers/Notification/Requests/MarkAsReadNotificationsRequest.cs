@@ -2,5 +2,5 @@
 
 public class MarkAsReadNotificationsRequest
 {
-    
+    public required Guid[] NotificationsIds { get; init; }
 }

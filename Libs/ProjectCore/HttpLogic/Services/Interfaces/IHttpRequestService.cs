@@ -1,6 +1,4 @@
-﻿using ExampleCore.HttpLogic.Services;
-
-namespace CoreLib.HttpServiceV2.Services.Interfaces;
+﻿namespace ProjectCore.HttpLogic.Services.Interfaces;
 
 /// <summary>
 /// Отправка HTTP запросов и обработка ответов

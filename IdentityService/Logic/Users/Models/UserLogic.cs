@@ -1,7 +1,11 @@
-﻿namespace IdentityLogic.Users.Models;
+namespace IdentityLogic.Users.Models;
 
-public class UserUpdateLogic
+/// <summary>
+/// Модель пользователя для слоя Logic 
+/// </summary>
+public class UserLogic
 {
+    public required Guid Id { get; init; }
     /// <summary>
     /// Имя пользователя
     /// </summary>
@@ -21,4 +25,11 @@ public class UserUpdateLogic
     /// Ссылка на изображение (аватар) пользователя
     /// </summary>
     public required string AvatarUrl { get; set; } = "images/defaultAvatar.jpg";
+    
+    /// <summary>
+    /// Дата регистрации пользователя
+    /// </summary>
+    public required DateOnly RegisterDate { get; init; }
+    
+    public required string HashedPassword { get; set; }
 }

@@ -1,4 +1,4 @@
-namespace ExampleCore.Dal.Base;
+namespace ProjectCore.Dal.Base;
 
 /// <summary>
 /// Базовая сущность для работы с сущностями в бд
@@ -9,5 +9,5 @@ public record BaseEntityDal<T>
     /// <summary>
     /// уникальный идентфиикатор сущности
     /// </summary>
-    public T Id { get; init; }
+    public required T Id { get; init; }
 }

@@ -1,6 +1,6 @@
-﻿using ExampleCore.HttpLogic.Services.Interfaces;
+﻿using ProjectCore.HttpLogic.Services.Interfaces;
 
-namespace ExampleCore.HttpLogic.Services;
+namespace ProjectCore.HttpLogic.Services;
 
 public record struct HttpConnectionData()
 {
