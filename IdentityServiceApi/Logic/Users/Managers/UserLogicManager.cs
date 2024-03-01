@@ -22,7 +22,7 @@ namespace Logic.Users.Managers
                 Password = user.Password,
                 RegistrationDate = user.RegistrationDate,
                 RoleId = user.RoleId,
-                SecondName = user.SecondName
+                LastName = user.SecondName
             });
 
             return userId;
@@ -48,7 +48,7 @@ namespace Logic.Users.Managers
                 Email = user.Email,
                 RegistrationDate = user.RegistrationDate,
                 RoleId = user.RoleId,
-                SecondName = user.SecondName
+                SecondName = user.LastName
             });
         }
 
@@ -60,7 +60,7 @@ namespace Logic.Users.Managers
                 ? new UserLogic()
                 : new UserLogic
                 {
-                    SecondName = user.SecondName,
+                    SecondName = user.LastName,
                     FirstName = user.FirstName,
                     Password = user.Password,
                     Age = user.Age,
@@ -82,12 +82,12 @@ namespace Logic.Users.Managers
                 FirstName = user.FirstName,
                 Id = user.Id,
                 Password = user.Password,
-                SecondName = user.SecondName
+                LastName = user.SecondName
             });
 
             return new UserLogic
             {
-                SecondName = updatedUser.SecondName,
+                SecondName = updatedUser.LastName,
                 FirstName = updatedUser.FirstName,
                 Password = updatedUser.Password,
                 Id = updatedUser.Id,
