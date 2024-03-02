@@ -59,6 +59,22 @@ namespace Logic.UserProfiles.Managers
                 };
         }
 
+        public async Task<UserProfileLogic> GetUserProfileByUserIdAsync(Guid userId)
+        {
+            var profile = await profileRepository.GetAsync(userId);
+
+            return profile == null
+                ? new UserProfileLogic()
+                : new UserProfileLogic
+                {
+                    AvatarUrl = profile.AvatarUrl,
+                    BirthDate = profile.BirthDate,
+                    Id = profile.Id,
+                    Status = profile.Status,
+                    UserId = userId
+                };
+        }
+
         public async Task<UserProfileLogic> UpdateUserProfileAsync(UserProfileLogic profile)
         {
             var updatedProfile = await profileRepository.UpdateAsync(new UserProfileDal
