@@ -1,3 +1,5 @@
+using Api.Controllers.UserProfiles.Requests;
+using Api.Controllers.UserProfiles.Responses;
 using Api.Controllers.Users.Requests;
 using Api.Controllers.Users.Responses;
 using Dal;
@@ -10,6 +12,7 @@ using Dal.Sessions;
 using Dal.UserProfiles;
 using Dal.Users;
 using Logic.UserProfiles.Managers;
+using Logic.UserProfiles.Models;
 using Logic.Users.Managers;
 using Logic.Users.Models;
 using Microsoft.AspNetCore.Mvc.Formatters;
@@ -76,6 +79,21 @@ builder.Services.AddAutoMapper(cfg =>
 
     cfg.CreateMap<UserLogic, UpdateUserResponse>();
 }, Array.Empty<System.Reflection.Assembly>());
+
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.CreateMap<CreateUserProfileRequest, UserProfileLogic>();
+
+    cfg.CreateMap<CreateUserProfileRequest, UserProfileLogic>();
+}, Array.Empty<System.Reflection.Assembly>());
+
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.CreateMap<UserProfileLogic, GetUserProfileInfoResponse>();
+
+    cfg.CreateMap<UserProfileLogic, GetUserProfileInfoResponse>();
+}, Array.Empty<System.Reflection.Assembly>());
+
 
 var app = builder.Build();
 
