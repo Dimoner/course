@@ -120,7 +120,7 @@ CREATE TABLE public."UserProfiles" (
     "Id" uuid NOT NULL,
     "Status" character varying(50),
     "AvatarUrl" character varying(100) NOT NULL,
-    "RegistrationDate" date,
+    "BirthDate" date,
     "UserId" uuid NOT NULL
 );
 
@@ -205,7 +205,7 @@ COPY public."Sessions" ("Id", "UserId", "Token", "CreatedAt", "ExpiresAt") FROM 
 -- Data for Name: UserProfiles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."UserProfiles" ("Id", "Status", "AvatarUrl", "RegistrationDate", "UserId") FROM stdin;
+COPY public."UserProfiles" ("Id", "Status", "AvatarUrl", "BirthDate", "UserId") FROM stdin;
 \.
 
 
