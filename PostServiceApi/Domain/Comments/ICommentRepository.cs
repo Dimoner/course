@@ -9,6 +9,6 @@ namespace Domain.Comments
         /// Get list of Comments that refer to 
         /// a certain Post which is decided by Post id
         /// </summary>
-        Task<PageList<Comment>> GetCommentsPageByPostIdAsync(Guid postId);
+        Task<IEnumerable<Comment>> GetCommentsByPostIdAsync(Guid postId);
     }
 }
