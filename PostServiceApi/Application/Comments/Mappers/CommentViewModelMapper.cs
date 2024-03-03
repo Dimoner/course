@@ -22,5 +22,23 @@ namespace Application.Comments.Mappers
         {
             return entities.Select(Map);
         }
+
+        public IEnumerable<Comment> Map(IEnumerable<CommentViewModel> viewModels)
+        {
+            return viewModels.Select(Map);
+        }
+
+        public Comment Map(CommentViewModel viewModel)
+        {
+            return new Comment
+            {
+                Id = viewModel.Id,
+                UserId = viewModel.UserId,
+                PostId = viewModel.PostId,
+                Content = viewModel.Content,
+                CreatedAt = viewModel.CreatedAt,
+                UpdatedAt = viewModel.UpdatedAt
+            };
+        }
     }
 }

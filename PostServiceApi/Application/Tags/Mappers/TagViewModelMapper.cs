@@ -18,5 +18,19 @@ namespace Application.Tags.Mappers
         {
             return entities.Select(Map);
         }
+
+        public IEnumerable<Tag> Map(IEnumerable<TagViewModel> viewModels)
+        {
+            return viewModels.Select(Map);
+        }
+
+        public Tag Map(TagViewModel viewModel)
+        {
+            return new Tag
+            {
+                Id = viewModel.Id,
+                Value = viewModel.Value,
+            };
+        }
     }
 }

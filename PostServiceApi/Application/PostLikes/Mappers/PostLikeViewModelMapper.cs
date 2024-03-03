@@ -19,5 +19,20 @@ namespace Application.PostLikes.Mappers
         {
             return entities.Select(Map);
         }
+
+        public IEnumerable<PostLike> Map(IEnumerable<PostLikeViewModel> viewModels)
+        {
+           return viewModels.Select(Map);
+        }
+
+        public PostLike Map(PostLikeViewModel viewModel)
+        {
+            return new PostLike
+            {
+                Id = viewModel.Id,
+                PostId = viewModel.PostId,
+                UserId = viewModel.UserId,
+            };
+        }
     }
 }
