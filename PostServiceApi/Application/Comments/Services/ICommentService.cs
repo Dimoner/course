@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces.Services;
+using Core.Dal.Base;
 
 namespace Application.Comments.Services
 {
@@ -9,6 +10,6 @@ namespace Application.Comments.Services
         IGetPageService<CommentViewModel>,
         IGetService<CommentViewModel>
     {
-        Task<IEnumerable<CommentViewModel>> GetPostComments(Guid postId);
+        Task<IEnumerable<CommentViewModel>> GetCommentsPageByPostIdAsync(Guid postId, int pageNumber, int pageSize);
     }
 }

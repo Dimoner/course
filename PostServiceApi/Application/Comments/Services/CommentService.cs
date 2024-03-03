@@ -1,5 +1,6 @@
 ﻿
 using Application.Comments.Mappers;
+using Core.Dal.Base;
 using Domain.Comments;
 using Domain.Comments.Exceptions;
 using System.ComponentModel.DataAnnotations;
@@ -43,9 +44,9 @@ namespace Application.Comments.Services
             return page.Select(commentViewModelMapper.Map);
         }
 
-        public async Task<IEnumerable<CommentViewModel>> GetPostComments(Guid postId)
+        public async Task<IEnumerable<CommentViewModel>> GetCommentsPageByPostIdAsync(Guid postId, int pageNumber, int pageSize)
         {
-            var comments = await commentRepository.GetCommentsByPostIdAsync(postId);
+            var comments = await commentRepository.GetCommentsPageByPostIdAsync(postId, pageNumber, pageSize);
 
             return comments.Select(commentViewModelMapper.Map);
         }
