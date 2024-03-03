@@ -38,6 +38,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Destructurama.Attributed": {
+              "target": "Package",
+              "version": "[4.0.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[8.0.1, )"
@@ -56,7 +60,7 @@
             },
             "Polly": {
               "target": "Package",
-              "version": "[8.2.1, )"
+              "version": "[8.3.0, )"
             },
             "Polly.Extensions.Http": {
               "target": "Package",
@@ -69,6 +73,10 @@
             "Serilog.Enrichers.Thread": {
               "target": "Package",
               "version": "[3.1.0, )"
+            },
+            "Serilog.Sinks.Async": {
+              "target": "Package",
+              "version": "[1.5.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

@@ -1,19 +1,27 @@
-using Services;
+using Domain.Interfaces;
+using ProfileConnectionLib.ConnectionServices.DtoModels.CheckUserExists;
+using ProfileConnectionLib.ConnectionServices.Interfaces;
 
-namespace ProfileDal;
+namespace Infastracted.Connections;
 
-public class CheckUser : ICheckUser
+// 1 микросервис может предоставлять RPC библиотеку для в/д с ним (в виде  csproj)
+// 2 этот сервис может сам решать какой канал в/д он использует
+// 3 мы не должны в/д с этим сервис в обход его connection Lib
+
+internal class CheckUser : ICheckUser
 {
-    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly IProfileConnectionServcie _profileConnectionServcie;
 
-    public CheckUser(IHttpClientFactory httpClientFactory)
+    public CheckUser(IProfileConnectionServcie profileConnectionServcie)
     {
-        _httpClientFactory = httpClientFactory;
+        _profileConnectionServcie = profileConnectionServcie;
     }
     
     public async Task CheckUserExistAsync(Guid userId)
     {
-        var client = _httpClientFactory.CreateClient();
-        var res = await client.GetAsync("dfgsdf");
+        await _profileConnectionServcie.CheckUserExistAsync(new CheckUserExistProfileApiRequest
+        {
+            UserId = userId
+        });
     }
 }

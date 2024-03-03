@@ -1,9 +1,10 @@
-using ProfileDal;
-using ProfileDal.Entities;
+using Domain.Entities;
 
-namespace Services;
+namespace Services.Intefaces;
 
 public interface ICreatePost
 {
     Task<Guid> CreatePostAsync(Post post);
+    
+    Task<Post[]> GetPostListAsync();
 }

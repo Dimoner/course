@@ -1,4 +1,4 @@
-namespace Services;
+namespace Domain.Interfaces;
 
 public interface ICheckUser
 {

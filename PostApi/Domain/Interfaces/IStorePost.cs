@@ -1,8 +1,10 @@
-using ProfileDal.Entities;
+using Domain.Entities;
 
-namespace ProfileDal;
+namespace Domain.Interfaces;
 
 public interface IStorePost
-{ 
+{
+    Task<Post[]> GetAllAsync();
+    
     Task<Guid> AddPost(Post post);
 }

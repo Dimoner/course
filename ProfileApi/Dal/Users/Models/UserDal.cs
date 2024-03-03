@@ -15,10 +15,22 @@ public record UserDal : BaseEntityDal<Guid>
     /// <summary>
     /// Логин пользователя
     /// </summary>
-    public required string Login { get; init; }
+    public required string Login { get; set; }
     
     /// <summary>
     /// Номер телефона пользователя
     /// </summary>
     public required string Phone { get; init; }
+
+    public void SetLogin(string login = null)
+    {
+        if (string.IsNullOrWhiteSpace(login))
+        {
+            Login = Phone;
+            
+            return;
+        }
+
+        Login = login;
+    }
 }

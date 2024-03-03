@@ -3,7 +3,7 @@
 /// <summary>
 /// Функционал для HTTP-соединения
 /// </summary>
-public interface IHttpConnectionService
+internal interface IHttpConnectionService
 {
     /// <summary>
     /// Создание клиента для HTTP-подключения

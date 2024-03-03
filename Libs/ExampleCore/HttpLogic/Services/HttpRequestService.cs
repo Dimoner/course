@@ -4,6 +4,7 @@ using System.Net.Mime;
 using System.Text;
 using CoreLib.HttpServiceV2.Services.Interfaces;
 using ExampleCore.HttpLogic.Services.Interfaces;
+using ExampleCore.TraceLogic.Interfaces;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -47,24 +48,15 @@ public record HttpRequestData
     public HttpMethod Method { get; set; }
 
     /// <summary>
-    /// Адрес http + dns + path
-    /// </summary>
-    [Obsolete("Используй св-во Uri")]
-    public string Url { get; set; }
-
-    /// <summary>
     /// Адрес запроса
-    /// </summary>
-    /// <remarks>
-    /// Значение здесь затрёт значение в <see cref="Url"/>, если оно там будет
-    /// </remarks>
+    /// </summary>\
     public Uri Uri { set; get; }
 
     /// <summary>
     /// Тело метода
     /// </summary>
     public object Body { get; set; }
-    
+
     /// <summary>
     /// content-type, указываемый при запросе
     /// </summary>
@@ -76,20 +68,10 @@ public record HttpRequestData
     public IDictionary<string, string> HeaderDictionary { get; set; } = new Dictionary<string, string>();
 
     /// <summary>
-    /// Параметры запроса
-    /// </summary>
-    [Obsolete("Используй QueryParameterList")]
-    public IDictionary<string, string> QueryParameterDictionary { get; set; } = new Dictionary<string, string>();
-
-    /// <summary>
-    /// Запрос будет сформирован с телом
-    /// </summary>
-    public bool IsWithBody => (Method == HttpMethod.Post || Method == HttpMethod.Put || Method == HttpMethod.Patch) && Body != null;
-
-    /// <summary>
     /// Коллекция параметров запроса
     /// </summary>
-    public ICollection<KeyValuePair<string, string>> QueryParameterList { get; set; } = new List<KeyValuePair<string, string>>();
+    public ICollection<KeyValuePair<string, string>> QueryParameterList { get; set; } =
+        new List<KeyValuePair<string, string>>();
 }
 
 public record BaseHttpResponse
@@ -132,26 +114,38 @@ public record HttpResponse<TResponse> : BaseHttpResponse
 }
 
 /// <inheritdoc />
-public class HttpRequestService : IHttpRequestService
+internal class HttpRequestService : IHttpRequestService
 {
     private readonly IHttpConnectionService _httpConnectionService;
+    private readonly IEnumerable<ITraceWriter> _traceWriterList;
 
     ///
     public HttpRequestService(
-        IHttpConnectionService httpConnectionService)
+        IHttpConnectionService httpConnectionService,
+        IEnumerable<ITraceWriter> traceWriterList)
     {
         _httpConnectionService = httpConnectionService;
+        _traceWriterList = traceWriterList;
     }
-    
+
     /// <inheritdoc />
-    public async Task<HttpResponse<TResponse>> SendRequestAsync<TResponse>(HttpRequestData requestData, HttpConnectionData connectionData)
+    public async Task<HttpResponse<TResponse>> SendRequestAsync<TResponse>(HttpRequestData requestData,
+        HttpConnectionData connectionData)
     {
         var client = _httpConnectionService.CreateHttpClient(connectionData);
-       // _httpConnectionService.SendRequestAsync();
-       return null;
+
+        var httpRequestMessage = new HttpRequestMessage();
+
+        foreach (var traceWriter in _traceWriterList)
+        {
+            httpRequestMessage.Headers.Add(traceWriter.Name, traceWriter.GetValue());
+        }
+
+        var res = await _httpConnectionService.SendRequestAsync(httpRequestMessage, null, default);
+        return null;
     }
-    
-     private static HttpContent PrepairContent(object body, ContentType contentType)
+
+    private static HttpContent PrepairContent(object body, ContentType contentType)
     {
         switch (contentType)
         {
@@ -176,7 +170,8 @@ public class HttpRequestService : IHttpRequestService
             {
                 if (body is not IEnumerable<KeyValuePair<string, string>> list)
                 {
-                    throw new Exception($"Body for content type {contentType} must be {typeof(IEnumerable<KeyValuePair<string, string>>).Name}");
+                    throw new Exception(
+                        $"Body for content type {contentType} must be {typeof(IEnumerable<KeyValuePair<string, string>>).Name}");
                 }
 
                 return new FormUrlEncodedContent(list);
@@ -197,7 +192,7 @@ public class HttpRequestService : IHttpRequestService
                     throw new Exception($"Body for content type {contentType} must be {typeof(byte[]).Name}");
                 }
 
-                return new ByteArrayContent((byte[]) body);
+                return new ByteArrayContent((byte[])body);
             }
             case ContentType.TextXml:
             {

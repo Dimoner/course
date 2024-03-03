@@ -9,5 +9,5 @@ public record BaseEntityDal<T>
     /// <summary>
     /// уникальный идентфиикатор сущности
     /// </summary>
-    public T Id { get; init; }
+    public T Id { get; protected set; }
 }

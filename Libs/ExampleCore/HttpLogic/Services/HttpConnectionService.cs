@@ -12,7 +12,7 @@ public record struct HttpConnectionData()
 }
 
 /// <inheritdoc />
-public class HttpConnectionService : IHttpConnectionService
+internal class HttpConnectionService : IHttpConnectionService
 {
     private readonly IHttpClientFactory _httpClientFactory;
 

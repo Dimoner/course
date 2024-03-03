@@ -4,9 +4,20 @@ using ProfileDal.Users.Models;
 
 namespace ProfileDal.Users;
 
+public interface IDbTrasaction
+{
+    Task Commit();
+}
+
 /// <inheritdoc />
 internal class UserRepository : IUserRepository
 {
+
+    public IDbTrasaction BeginTrasaction()
+    {
+        
+    }
+    
     private static readonly ConcurrentDictionary<Guid, UserDal> Store = new();
     
     /// <inheritdoc />
