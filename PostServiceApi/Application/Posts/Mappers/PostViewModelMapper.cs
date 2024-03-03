@@ -3,9 +3,9 @@ using Application.Tags;
 using Domain.Posts;
 using Domain.Tags;
 
-namespace Application.Posts
+namespace Application.Posts.Mappers
 {
-    public class PostViewModelMapper : IMapper<PostViewModel, Post>
+    public class PostViewModelMapper : IPostViewModelMapper
     {
         private readonly IMapper<TagViewModel, Tag> tagMapper;
 

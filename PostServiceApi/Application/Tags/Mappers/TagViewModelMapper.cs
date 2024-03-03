@@ -1,9 +1,9 @@
 ﻿using Application.Interfaces;
 using Domain.Tags;
 
-namespace Application.Tags
+namespace Application.Tags.Mappers
 {
-    public class TagViewModelMapper : IMapper<TagViewModel, Tag>
+    public class TagViewModelMapper : ITagViewModelMapper
     {
         public TagViewModel Map(Tag entity)
         {
