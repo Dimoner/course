@@ -42,9 +42,17 @@ namespace Infrastructure.Comments
             return entity;
         }
 
-        public Task<PageList<Comment>> GetCommentsPageByPostIdAsync(Guid postId, int pageNumber, int pageSize)
+        public async Task<PageList<Comment>> GetCommentsPageByPostIdAsync(Guid postId, int pageNumber, int pageSize)
         {
-            throw new NotImplementedException();
+            var count = context.Comments.Count();
+            var comments = await context.Comments
+                .Where(comment => comment.Id == postId)
+                .OrderBy(comment => comment.CreatedAt)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PageList<Comment>(comments, count, pageNumber, pageSize);
         }
 
         public async Task<PageList<Comment>> GetPageAsync(int pageNumber, int pageSize)
