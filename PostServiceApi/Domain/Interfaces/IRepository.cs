@@ -11,7 +11,7 @@ namespace Domain.Interfaces
         /// <summary>
         /// Gettng entity by id 
         /// </summary>
-        Task<TEntity?> GetAsync(Guid id);
+        Task<TEntity> GetAsync(Guid id);
 
         /// <summary>
         /// Get list of entities of a certain size 
@@ -27,11 +27,11 @@ namespace Domain.Interfaces
         /// <summary>
         /// Update or create entity
         /// </summary>
-        Task<TEntity> UpdateAsync(TEntity entity);
+        Task UpdateAsync(TEntity entity);
 
         /// <summary>
         /// Delete entity by id
         /// </summary>
-        Task<bool> DeleteAsync(Guid id);
+        Task DeleteAsync(Guid id);
     }
 }
