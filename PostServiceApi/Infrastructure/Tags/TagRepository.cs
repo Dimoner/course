@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Tags
 {
-    internal sealed class TagRepository : ITagRepository
+    public sealed class TagRepository : ITagRepository
     {
         private PostServiceContext context;
 

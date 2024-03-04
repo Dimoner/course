@@ -1,13 +1,11 @@
 ﻿using Core.Dal.Base;
-using Domain.PostLikes;
-using Domain.PostLikes.Exceptions;
 using Domain.Posts;
 using Domain.Posts.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Posts
 {
-    internal sealed class PostRepository : IPostRepository
+    public sealed class PostRepository : IPostRepository
     {
         private PostServiceContext context;
 

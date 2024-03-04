@@ -1,14 +1,11 @@
 ﻿using Core.Dal.Base;
-using Domain.Comments;
-using Domain.Interfaces;
 using Domain.PostLikes;
 using Domain.PostLikes.Exceptions;
 using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
 
 namespace Infrastructure.PostLikes
 {
-    internal sealed class PostLikeRepository : IPostLikeRepository
+    public sealed class PostLikeRepository : IPostLikeRepository
     {
         private PostServiceContext context;
 

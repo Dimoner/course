@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Comments
 {
-    internal sealed class CommentsRepository : ICommentRepository
+    public sealed class CommentsRepository : ICommentRepository
     {
         private readonly PostServiceContext context;
 
