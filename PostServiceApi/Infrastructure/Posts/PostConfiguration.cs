@@ -9,7 +9,9 @@ namespace Infrastructure.Posts
         public void Configure(EntityTypeBuilder<Post> builder)
         {
             builder.ToTable(nameof(Post));
+
             builder.HasKey(post => post.Id);
+            
             builder.Property(post => post.UserId).IsRequired();
             builder.Property(post => post.Content).IsRequired();
             builder.Property(post => post.LikesCount).IsRequired();
