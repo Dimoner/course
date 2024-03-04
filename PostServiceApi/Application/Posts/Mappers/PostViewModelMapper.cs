@@ -1,5 +1,6 @@
 ﻿using Application.Interfaces;
 using Application.Tags;
+using Application.Tags.Mappers;
 using Domain.Posts;
 using Domain.Tags;
 
@@ -7,9 +8,9 @@ namespace Application.Posts.Mappers
 {
     public class PostViewModelMapper : IPostViewModelMapper
     {
-        private readonly IMapper<TagViewModel, Tag> tagMapper;
+        private readonly ITagViewModelMapper tagMapper;
 
-        public PostViewModelMapper(IMapper<TagViewModel, Tag> tagMapper)
+        public PostViewModelMapper(ITagViewModelMapper tagMapper)
         {
             this.tagMapper = tagMapper;
         }
