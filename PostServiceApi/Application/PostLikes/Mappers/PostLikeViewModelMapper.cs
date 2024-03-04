@@ -1,9 +1,8 @@
-﻿using Application.Interfaces;
-using Domain.PostLikes;
+﻿using Domain.PostLikes;
 
 namespace Application.PostLikes.Mappers
 {
-    internal sealed class PostLikeViewModelMapper : IPostLikeViewModelMapper
+    public sealed class PostLikeViewModelMapper : IPostLikeViewModelMapper
     {
         public PostLikeViewModel Map(PostLike entity)
         {

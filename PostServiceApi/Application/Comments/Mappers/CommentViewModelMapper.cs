@@ -1,9 +1,8 @@
-﻿using Application.Interfaces;
-using Domain.Comments;
+﻿using Domain.Comments;
 
 namespace Application.Comments.Mappers
 {
-    internal sealed class CommentViewModelMapper : ICommentViewModelMapper
+    public sealed class CommentViewModelMapper : ICommentViewModelMapper
     {
         public CommentViewModel Map(Comment entity)
         {

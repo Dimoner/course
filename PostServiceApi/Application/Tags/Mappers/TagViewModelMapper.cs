@@ -1,5 +1,4 @@
-﻿using Application.Interfaces;
-using Domain.Tags;
+﻿using Domain.Tags;
 
 namespace Application.Tags.Mappers
 {
