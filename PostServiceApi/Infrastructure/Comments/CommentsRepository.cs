@@ -46,7 +46,7 @@ namespace Infrastructure.Comments
         {
             var count = context.Comments.Count();
             var comments = await context.Comments
-                .Where(comment => comment.Id == postId)
+                .Where(comment => comment.PostId == postId)
                 .OrderBy(comment => comment.CreatedAt)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
