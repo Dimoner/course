@@ -4,7 +4,7 @@ using Domain.Posts.Exceptions;
 
 namespace Application.Posts.Services
 {
-    internal sealed class PostService : IPostService
+    public sealed class PostService : IPostService
     {
         private readonly IPostRepository postRepository;
         private readonly IPostViewModelMapper postMapper;

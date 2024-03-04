@@ -1,11 +1,10 @@
 ﻿using Application.PostLikes.Mappers;
 using Domain.PostLikes;
 using Domain.PostLikes.Exceptions;
-using System.ComponentModel.DataAnnotations;
 
 namespace Application.PostLikes.Services
 {
-    internal sealed class PostLikeService : IPostLikeService
+    public sealed class PostLikeService : IPostLikeService
     {
         private readonly IPostLikeRepository postLikeRepository;
         private readonly IPostLikeViewModelMapper postLikeViewModelMapper;

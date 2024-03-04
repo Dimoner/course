@@ -4,7 +4,7 @@ using Domain.Tags.Exceptions;
 
 namespace Application.Tags.Services
 {
-    internal sealed class TagService : ITagService
+    public sealed class TagService : ITagService
     {
         private readonly ITagRepository tagRepository;
         private readonly ITagViewModelMapper tagViewModelMapper;

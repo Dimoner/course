@@ -1,13 +1,10 @@
-﻿
-using Application.Comments.Mappers;
-using Core.Dal.Base;
+﻿using Application.Comments.Mappers;
 using Domain.Comments;
 using Domain.Comments.Exceptions;
-using System.ComponentModel.DataAnnotations;
 
 namespace Application.Comments.Services
 {
-    internal sealed class CommentService : ICommentService
+    public sealed class CommentService : ICommentService
     {
         private readonly ICommentRepository commentRepository;
         private readonly ICommentViewModelMapper commentViewModelMapper;

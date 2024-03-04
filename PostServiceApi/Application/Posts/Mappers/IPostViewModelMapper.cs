@@ -3,7 +3,7 @@ using Domain.Posts;
 
 namespace Application.Posts.Mappers
 {
-    internal interface IPostViewModelMapper : IMapper<PostViewModel, Post>
+    public interface IPostViewModelMapper : IMapper<PostViewModel, Post>
     {
     }
 }
