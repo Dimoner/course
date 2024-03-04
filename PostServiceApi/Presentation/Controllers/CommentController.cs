@@ -2,7 +2,7 @@
 using Application.Comments.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers
+namespace Presentation.Controllers
 {
     [ApiController]
     [Route("/api/comments")]

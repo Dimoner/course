@@ -2,7 +2,7 @@
 using Application.PostLikes.Services;
 using Application.PostLikes;
 
-namespace Api.Controllers
+namespace Presentation.Controllers
 {
     [ApiController]
     [Route("/api/postLikes")]

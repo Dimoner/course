@@ -2,7 +2,7 @@
 using Application.Tags.Services;
 using Application.Tags;
 
-namespace Api.Controllers
+namespace Presentation.Controllers
 {
     [ApiController]
     [Route("/api/tags")]

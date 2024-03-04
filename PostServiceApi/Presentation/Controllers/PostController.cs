@@ -2,7 +2,7 @@
 using Application.Posts.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers
+namespace Presentation.Controllers
 {
     [ApiController]
     [Route("/api/posts")]
